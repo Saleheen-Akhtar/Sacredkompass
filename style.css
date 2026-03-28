@@ -1668,3 +1668,113 @@ body::after {
   .hero-left           { padding: 8rem 1.5rem 4rem; }
   .wrap, .wrap-narrow, .wrap-wide { padding: 0 1.5rem; }
 }
+
+/* ================================================================
+   V5 UPDATES: Rounded Corners & Centered Hero
+   ================================================================ */
+
+/* Apply soft rounding to all cards globally */
+.offering-card, .value-card, .sk-rounded-card, .founder-portrait {
+  border-radius: 24px !important;
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.03);
+}
+
+/* New Centered Hero */
+.hero-centered {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  background-size: cover;
+  background-position: 50% 0%; /* Initial pos for GSAP parallax */
+  background-attachment: scroll;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(19, 15, 12, 0.45); /* Dark overlay to make text pop */
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  max-width: 900px;
+}
+.hero-content .display-xl {
+  color: #fff;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.hero-content .hero-sub {
+  color: rgba(255,255,255,0.8);
+  font-size: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+/* Remove old complex borders from grid systems so rounding looks natural */
+.values-grid, .offerings-grid {
+  border: none !important;
+  gap: 2rem;
+}
+.value-card, .offering-card {
+  border: 1px solid var(--border) !important;
+}
+
+/* ================================================================
+   V5 UPDATES: Rounded Corners & Centered Hero
+   ================================================================ */
+
+/* Apply soft rounding to all cards globally */
+.offering-card, .value-card, .sk-rounded-card, .founder-portrait {
+  border-radius: 24px !important;
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.03);
+}
+
+/* New Centered Hero */
+.hero-centered {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  background-size: cover;
+  background-position: 50% 0%; /* Initial pos for GSAP parallax */
+  background-attachment: scroll;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(19, 15, 12, 0.45); /* Dark overlay to make text pop */
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  max-width: 900px;
+}
+.hero-content .display-xl {
+  color: #fff;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.hero-content .hero-sub {
+  color: rgba(255,255,255,0.8);
+  font-size: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+/* Remove old complex borders from grid systems so rounding looks natural */
+.values-grid, .offerings-grid {
+  border: none !important;
+  gap: 2rem;
+}
+.value-card, .offering-card {
+  border: 1px solid var(--border) !important;
+}
