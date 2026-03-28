@@ -9,7 +9,9 @@ if ( have_posts() ) :
       while ( have_rows('page_sections') ) : the_row();
 
         // Include the matching template part based on the layout name
-        get_template_part( 'template-parts/blocks/' . get_row_layout() );
+        // E.g., 'layout_hero' will load 'hero.php'
+        $layout = str_replace('layout_', '', get_row_layout());
+        get_template_part( 'template-parts/blocks/' . $layout );
 
       endwhile;
     endif;
