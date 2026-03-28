@@ -59,7 +59,6 @@ function sk_option( $key, $fallback = '' ) {
    ════════════════════════════════════════════════════════════ */
 define( 'SK_EMAIL_FIELD', 'email-1' );
 
-// 1. Rate Limiting: Max 3 submissions per email per 24 hours.
 add_filter( 'forminator_custom_form_submit_errors', 'sk_forminator_rate_limit', 10, 3 );
 function sk_forminator_rate_limit( $submit_errors, $form_id, $field_data_array ) {
     global $wpdb;
@@ -77,10 +76,7 @@ function sk_forminator_rate_limit( $submit_errors, $form_id, $field_data_array )
 
     if ( empty( $email ) ) return $submit_errors;
 
-    // Check last 24 hours
     $time_limit = date('Y-m-d H:i:s', strtotime('-24 hours'));
-
-    // We must join the entries table to get the date_created, and the meta table to check the email.
     $query = $wpdb->prepare(
         "SELECT COUNT(*)
          FROM {$wpdb->prefix}frmt_form_entry e
@@ -96,14 +92,12 @@ function sk_forminator_rate_limit( $submit_errors, $form_id, $field_data_array )
     $recent_submissions = (int) $wpdb->get_var( $query );
 
     if ( $recent_submissions >= 3 ) {
-        // Soft rate limit error
         $submit_errors[][ SK_EMAIL_FIELD ] = esc_html__( "You've reached out a few times recently! Please wait a moment before sending another message, or email us directly.", 'sacred-kompass' );
     }
 
     return $submit_errors;
 }
 
-// 2. Returning Visitor Message
 add_filter( 'forminator_custom_form_success_message', 'sk_returning_visitor_message', 10, 4 );
 function sk_returning_visitor_message( $message, $custom_form, $form_id, $field_data_array ) {
   global $wpdb;
@@ -148,7 +142,6 @@ add_action('acf/init', 'sk_register_acf_fields');
 function sk_register_acf_fields() {
   if ( ! function_exists('acf_add_local_field_group') ) return;
 
-  /* Global Site Settings for Footer */
   if ( function_exists('acf_add_options_page') ) {
     acf_add_options_page([
       'page_title' => 'Global Settings',
@@ -184,10 +177,7 @@ function sk_register_acf_fields() {
 
           /* Hero Section */
           'layout_hero' => [
-            'key' => 'layout_hero',
-            'name' => 'hero',
-            'label' => 'Hero (Centered)',
-            'display' => 'block',
+            'key' => 'layout_hero', 'name' => 'hero', 'label' => 'Hero (Centered)', 'display' => 'block',
             'sub_fields' => [
               ['key'=>'hero_bg', 'label'=>'Background Image', 'name'=>'bg_image', 'type'=>'image', 'return_format'=>'url'],
               ['key'=>'hero_h1', 'label'=>'Main Heading', 'name'=>'heading', 'type'=>'text'],
@@ -197,10 +187,7 @@ function sk_register_acf_fields() {
 
           /* About Section */
           'layout_about' => [
-            'key' => 'layout_about',
-            'name' => 'about',
-            'label' => 'About',
-            'display' => 'block',
+            'key' => 'layout_about', 'name' => 'about', 'label' => 'About', 'display' => 'block',
             'sub_fields' => [
               ['key'=>'about_h2', 'label'=>'Heading', 'name'=>'heading', 'type'=>'text'],
               ['key'=>'about_body', 'label'=>'Body Text', 'name'=>'body', 'type'=>'wysiwyg'],
@@ -211,10 +198,7 @@ function sk_register_acf_fields() {
 
           /* Philosophy Strip */
           'layout_philosophy' => [
-            'key' => 'layout_philosophy',
-            'name' => 'philosophy',
-            'label' => 'Philosophy Strip',
-            'display' => 'block',
+            'key' => 'layout_philosophy', 'name' => 'philosophy', 'label' => 'Philosophy Strip', 'display' => 'block',
             'sub_fields' => [
               [
                 'key'=>'phil_rep', 'label'=>'Pillars', 'name'=>'pillars', 'type'=>'repeater', 'max'=>3,
@@ -227,12 +211,89 @@ function sk_register_acf_fields() {
             ]
           ],
 
+          /* Offerings */
+          'layout_offerings' => [
+            'key' => 'layout_offerings', 'name' => 'offerings', 'label' => 'Offerings', 'display' => 'block',
+            'sub_fields' => [
+              ['key'=>'off_h2', 'label'=>'Heading', 'name'=>'heading', 'type'=>'text'],
+              ['key'=>'off_sub', 'label'=>'Subheading', 'name'=>'subheading', 'type'=>'textarea'],
+              [
+                'key'=>'off_rep', 'label'=>'Offerings List', 'name'=>'offerings_list', 'type'=>'repeater',
+                'sub_fields' => [
+                  ['key'=>'off_r_img', 'label'=>'Image', 'name'=>'image', 'type'=>'image', 'return_format'=>'array'],
+                  ['key'=>'off_r_tag', 'label'=>'Tag', 'name'=>'tag', 'type'=>'text'],
+                  ['key'=>'off_r_tit', 'label'=>'Title', 'name'=>'title', 'type'=>'text'],
+                  ['key'=>'off_r_dsc', 'label'=>'Description', 'name'=>'desc', 'type'=>'textarea'],
+                  ['key'=>'off_r_prc', 'label'=>'Price', 'name'=>'price', 'type'=>'text'],
+                ]
+              ]
+            ]
+          ],
+
+          /* Quote Band */
+          'layout_quote_band' => [
+            'key' => 'layout_quote_band', 'name' => 'quote_band', 'label' => 'Quote Band', 'display' => 'block',
+            'sub_fields' => [
+              ['key'=>'qb_bg_txt', 'label'=>'Large Background Text', 'name'=>'large_bg_text', 'type'=>'text'],
+              ['key'=>'qb_eye', 'label'=>'Eyebrow', 'name'=>'eyebrow', 'type'=>'text'],
+              ['key'=>'qb_qt', 'label'=>'Quote', 'name'=>'quote', 'type'=>'textarea'],
+              ['key'=>'qb_auth', 'label'=>'Author', 'name'=>'author', 'type'=>'text'],
+            ]
+          ],
+
+          /* Founders */
+          'layout_founders' => [
+            'key' => 'layout_founders', 'name' => 'founders', 'label' => 'Founders', 'display' => 'block',
+            'sub_fields' => [
+              ['key'=>'fnd_h2', 'label'=>'Heading', 'name'=>'heading', 'type'=>'text'],
+              ['key'=>'fnd_sub', 'label'=>'Subheading', 'name'=>'subheading', 'type'=>'textarea'],
+              [
+                'key'=>'fnd_rep', 'label'=>'Founders List', 'name'=>'founders_list', 'type'=>'repeater',
+                'sub_fields' => [
+                  ['key'=>'fnd_r_img', 'label'=>'Portrait Image', 'name'=>'image', 'type'=>'image', 'return_format'=>'array'],
+                  ['key'=>'fnd_r_nm', 'label'=>'Name', 'name'=>'name', 'type'=>'text'],
+                  ['key'=>'fnd_r_rl', 'label'=>'Role', 'name'=>'role', 'type'=>'text'],
+                  ['key'=>'fnd_r_bio', 'label'=>'Bio', 'name'=>'bio', 'type'=>'textarea'],
+                ]
+              ]
+            ]
+          ],
+
+          /* Values */
+          'layout_values' => [
+            'key' => 'layout_values', 'name' => 'values', 'label' => 'Values', 'display' => 'block',
+            'sub_fields' => [
+              ['key'=>'val_h2', 'label'=>'Heading', 'name'=>'heading', 'type'=>'text'],
+              [
+                'key'=>'val_rep', 'label'=>'Values List', 'name'=>'values_list', 'type'=>'repeater',
+                'sub_fields' => [
+                  ['key'=>'val_r_num', 'label'=>'Number', 'name'=>'number', 'type'=>'text'],
+                  ['key'=>'val_r_tit', 'label'=>'Title', 'name'=>'title', 'type'=>'text'],
+                  ['key'=>'val_r_dsc', 'label'=>'Description', 'name'=>'desc', 'type'=>'textarea'],
+                ]
+              ]
+            ]
+          ],
+
+          /* FAQ */
+          'layout_faq' => [
+            'key' => 'layout_faq', 'name' => 'faq', 'label' => 'FAQ', 'display' => 'block',
+            'sub_fields' => [
+              ['key'=>'faq_h2', 'label'=>'Heading', 'name'=>'heading', 'type'=>'text'],
+              ['key'=>'faq_sub', 'label'=>'Subheading', 'name'=>'subheading', 'type'=>'textarea'],
+              [
+                'key'=>'faq_rep', 'label'=>'FAQs List', 'name'=>'faqs_list', 'type'=>'repeater',
+                'sub_fields' => [
+                  ['key'=>'faq_r_q', 'label'=>'Question', 'name'=>'question', 'type'=>'text'],
+                  ['key'=>'faq_r_a', 'label'=>'Answer', 'name'=>'answer', 'type'=>'textarea'],
+                ]
+              ]
+            ]
+          ],
+
           /* Contact Forminator */
           'layout_contact' => [
-            'key' => 'layout_contact',
-            'name' => 'contact',
-            'label' => 'Contact Form',
-            'display' => 'block',
+            'key' => 'layout_contact', 'name' => 'contact', 'label' => 'Contact Form', 'display' => 'block',
             'sub_fields' => [
               ['key'=>'contact_h2', 'label'=>'Heading', 'name'=>'heading', 'type'=>'text'],
               ['key'=>'contact_sub', 'label'=>'Subtext', 'name'=>'subtext', 'type'=>'textarea'],
