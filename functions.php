@@ -154,10 +154,10 @@ function sk_register_acf_fields() {
     'title'    => 'Global Footer Settings',
     'location' => [[['param'=>'options_page','operator'=>'==','value'=>'sk-site-settings']]],
     'fields'   => [
-      ['key'=>'field_g_footer_tagline','label'=>'Footer Tagline','name'=>'footer_tagline','type'=>'textarea'],
-      ['key'=>'field_g_footer_copy','label'=>'Copyright Text','name'=>'footer_copyright','type'=>'text'],
-      ['key'=>'field_g_footer_email','label'=>'Contact Email','name'=>'footer_email','type'=>'email'],
-      ['key'=>'field_g_footer_phone','label'=>'Contact Phone','name'=>'footer_phone','type'=>'text'],
+      ['key'=>'field_g_footer_tagline','label'=>'Footer Tagline','name'=>'footer_tagline','type'=>'textarea', 'default_value'=>'Ancient wisdom for the modern soul. Transformative guidance for individuals, leaders, and organisations.'],
+      ['key'=>'field_g_footer_copy','label'=>'Copyright Text','name'=>'footer_copyright','type'=>'text', 'default_value'=>'Sacred Kompass Collective · Singapore'],
+      ['key'=>'field_g_footer_email','label'=>'Contact Email','name'=>'footer_email','type'=>'email', 'default_value'=>'collective@sacredkompass.org'],
+      ['key'=>'field_g_footer_phone','label'=>'Contact Phone','name'=>'footer_phone','type'=>'text', 'default_value'=>'+65 84343915'],
     ],
   ]);
 
@@ -180,8 +180,8 @@ function sk_register_acf_fields() {
             'key' => 'layout_hero', 'name' => 'hero', 'label' => 'Hero (Centered)', 'display' => 'block',
             'sub_fields' => [
               ['key'=>'hero_bg', 'label'=>'Background Image', 'name'=>'bg_image', 'type'=>'image', 'return_format'=>'url'],
-              ['key'=>'hero_h1', 'label'=>'Main Heading', 'name'=>'heading', 'type'=>'text'],
-              ['key'=>'hero_sub', 'label'=>'Sub Heading', 'name'=>'subheading', 'type'=>'textarea'],
+              ['key'=>'hero_h1', 'label'=>'Main Heading', 'name'=>'heading', 'type'=>'text', 'default_value'=>'The world pulls at you. Something inside you is calling for stillness. We walk you back to yourself.'],
+              ['key'=>'hero_sub', 'label'=>'Sub Heading', 'name'=>'subheading', 'type'=>'textarea', 'default_value'=>'Vedic philosophy, Jyotish astrology, and compassionate practice.'],
             ]
           ],
 
@@ -189,10 +189,10 @@ function sk_register_acf_fields() {
           'layout_about' => [
             'key' => 'layout_about', 'name' => 'about', 'label' => 'About', 'display' => 'block',
             'sub_fields' => [
-              ['key'=>'about_h2', 'label'=>'Heading', 'name'=>'heading', 'type'=>'text'],
-              ['key'=>'about_body', 'label'=>'Body Text', 'name'=>'body', 'type'=>'wysiwyg'],
-              ['key'=>'about_quote', 'label'=>'Pull Quote', 'name'=>'quote', 'type'=>'textarea'],
-              ['key'=>'about_tags', 'label'=>'Tradition Tags (Comma separated)', 'name'=>'tags', 'type'=>'text'],
+              ['key'=>'about_h2', 'label'=>'Heading', 'name'=>'heading', 'type'=>'text', 'default_value'=>'A sanctuary for the modern soul.'],
+              ['key'=>'about_body', 'label'=>'Body Text', 'name'=>'body', 'type'=>'wysiwyg', 'default_value'=>'<p>Sacred Kompass is a spiritual wellness collective dedicated to bridging ancient Vedic wisdom with modern life.</p><p>Through meditation, communication, Jyotish astrology, and conscious leadership, we offer transformative guidance for individuals, leaders, and organisations seeking profound alignment.</p>'],
+              ['key'=>'about_quote', 'label'=>'Pull Quote', 'name'=>'quote', 'type'=>'textarea', 'default_value'=>'Stillness is not the absence of movement, but the deep presence of self.'],
+              ['key'=>'about_tags', 'label'=>'Tradition Tags (Comma separated)', 'name'=>'tags', 'type'=>'text', 'default_value'=>'Vedic Philosophy, Jyotish Astrology, Compassionate Practice'],
             ]
           ],
 
@@ -215,8 +215,8 @@ function sk_register_acf_fields() {
           'layout_offerings' => [
             'key' => 'layout_offerings', 'name' => 'offerings', 'label' => 'Offerings', 'display' => 'block',
             'sub_fields' => [
-              ['key'=>'off_h2', 'label'=>'Heading', 'name'=>'heading', 'type'=>'text'],
-              ['key'=>'off_sub', 'label'=>'Subheading', 'name'=>'subheading', 'type'=>'textarea'],
+              ['key'=>'off_h2', 'label'=>'Heading', 'name'=>'heading', 'type'=>'text', 'default_value'=>'Our Offerings'],
+              ['key'=>'off_sub', 'label'=>'Subheading', 'name'=>'subheading', 'type'=>'textarea', 'default_value'=>'Paths to deeper alignment.'],
               [
                 'key'=>'off_rep', 'label'=>'Offerings List', 'name'=>'offerings_list', 'type'=>'repeater',
                 'sub_fields' => [
@@ -234,10 +234,10 @@ function sk_register_acf_fields() {
           'layout_quote_band' => [
             'key' => 'layout_quote_band', 'name' => 'quote_band', 'label' => 'Quote Band', 'display' => 'block',
             'sub_fields' => [
-              ['key'=>'qb_bg_txt', 'label'=>'Large Background Text', 'name'=>'large_bg_text', 'type'=>'text'],
-              ['key'=>'qb_eye', 'label'=>'Eyebrow', 'name'=>'eyebrow', 'type'=>'text'],
-              ['key'=>'qb_qt', 'label'=>'Quote', 'name'=>'quote', 'type'=>'textarea'],
-              ['key'=>'qb_auth', 'label'=>'Author', 'name'=>'author', 'type'=>'text'],
+              ['key'=>'qb_bg_txt', 'label'=>'Large Background Text', 'name'=>'large_bg_text', 'type'=>'text', 'default_value'=>'AWAKEN'],
+              ['key'=>'qb_eye', 'label'=>'Eyebrow', 'name'=>'eyebrow', 'type'=>'text', 'default_value'=>'The Vision'],
+              ['key'=>'qb_qt', 'label'=>'Quote', 'name'=>'quote', 'type'=>'textarea', 'default_value'=>'The quieter you become, the more you can hear.'],
+              ['key'=>'qb_auth', 'label'=>'Author', 'name'=>'author', 'type'=>'text', 'default_value'=>'— Ram Dass'],
             ]
           ],
 
@@ -245,8 +245,8 @@ function sk_register_acf_fields() {
           'layout_founders' => [
             'key' => 'layout_founders', 'name' => 'founders', 'label' => 'Founders', 'display' => 'block',
             'sub_fields' => [
-              ['key'=>'fnd_h2', 'label'=>'Heading', 'name'=>'heading', 'type'=>'text'],
-              ['key'=>'fnd_sub', 'label'=>'Subheading', 'name'=>'subheading', 'type'=>'textarea'],
+              ['key'=>'fnd_h2', 'label'=>'Heading', 'name'=>'heading', 'type'=>'text', 'default_value'=>'The Collective'],
+              ['key'=>'fnd_sub', 'label'=>'Subheading', 'name'=>'subheading', 'type'=>'textarea', 'default_value'=>'Guided by deep lineage and lived experience.'],
               [
                 'key'=>'fnd_rep', 'label'=>'Founders List', 'name'=>'founders_list', 'type'=>'repeater',
                 'sub_fields' => [
@@ -263,7 +263,7 @@ function sk_register_acf_fields() {
           'layout_values' => [
             'key' => 'layout_values', 'name' => 'values', 'label' => 'Values', 'display' => 'block',
             'sub_fields' => [
-              ['key'=>'val_h2', 'label'=>'Heading', 'name'=>'heading', 'type'=>'text'],
+              ['key'=>'val_h2', 'label'=>'Heading', 'name'=>'heading', 'type'=>'text', 'default_value'=>'Core Values'],
               [
                 'key'=>'val_rep', 'label'=>'Values List', 'name'=>'values_list', 'type'=>'repeater',
                 'sub_fields' => [
@@ -279,8 +279,8 @@ function sk_register_acf_fields() {
           'layout_faq' => [
             'key' => 'layout_faq', 'name' => 'faq', 'label' => 'FAQ', 'display' => 'block',
             'sub_fields' => [
-              ['key'=>'faq_h2', 'label'=>'Heading', 'name'=>'heading', 'type'=>'text'],
-              ['key'=>'faq_sub', 'label'=>'Subheading', 'name'=>'subheading', 'type'=>'textarea'],
+              ['key'=>'faq_h2', 'label'=>'Heading', 'name'=>'heading', 'type'=>'text', 'default_value'=>'Frequently Asked Questions'],
+              ['key'=>'faq_sub', 'label'=>'Subheading', 'name'=>'subheading', 'type'=>'textarea', 'default_value'=>'Clarity on the journey.'],
               [
                 'key'=>'faq_rep', 'label'=>'FAQs List', 'name'=>'faqs_list', 'type'=>'repeater',
                 'sub_fields' => [
@@ -295,8 +295,8 @@ function sk_register_acf_fields() {
           'layout_contact' => [
             'key' => 'layout_contact', 'name' => 'contact', 'label' => 'Contact Form', 'display' => 'block',
             'sub_fields' => [
-              ['key'=>'contact_h2', 'label'=>'Heading', 'name'=>'heading', 'type'=>'text'],
-              ['key'=>'contact_sub', 'label'=>'Subtext', 'name'=>'subtext', 'type'=>'textarea'],
+              ['key'=>'contact_h2', 'label'=>'Heading', 'name'=>'heading', 'type'=>'text', 'default_value'=>'Begin Your Journey'],
+              ['key'=>'contact_sub', 'label'=>'Subtext', 'name'=>'subtext', 'type'=>'textarea', 'default_value'=>'Connect with us to explore how we can support your path.'],
               ['key'=>'contact_form_id', 'label'=>'Forminator Form ID', 'name'=>'form_id', 'type'=>'number'],
             ]
           ],
